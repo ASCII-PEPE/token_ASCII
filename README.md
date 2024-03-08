@@ -84,16 +84,15 @@ The contract owner can manually trigger token burning using the `manualBurn` fun
 
 The contract implements an adaptive rebalancing threshold to maintain a healthy token distribution. The threshold starts at a high value and decreases progressively based on the number of blocks since the trading start. The threshold is calculated using the following formula:
 
-```solidity
-adaptiveRebalancingThreshold = _initialAdaptiveRebalancingThreshold - ((_initialAdaptiveRebalancingThreshold - _finalAdaptiveRebalancingThreshold) * (blocksRemaining / _adaptiveRebalancingThresholdReductionBlocks))`
+`adaptiveRebalancingThreshold = _initialAdaptiveRebalancingThreshold - ((_initialAdaptiveRebalancingThreshold - _finalAdaptiveRebalancingThreshold) * (blocksRemaining / _adaptiveRebalancingThresholdReductionBlocks))`
 
 When the contract balance exceeds the adaptive rebalancing threshold, the excess tokens are automatically burned.
 
-## Anti-MEV Mechanism
+## 🚫 Anti-MEV Mechanism
 
 The contract includes an anti-MEV (Miner Extractable Value) mechanism to prevent front-running and sandwich attacks. This mechanism restricts buy transactions to one per block per address during the initial trading period, as specified by the `_antiMevBlocks` variable.
 
-## Utility Functions
+## 🎯 Utility Functions
 
 The contract provides various utility functions for retrieving token information and performing specific actions:
 
@@ -115,5 +114,6 @@ The contract provides various utility functions for retrieving token information
 
 ---
 
-**Note**: This document is intended for informational purposes only and does not constitute legal or financial advice. It is recommended to consult with a qualified professional for advice specific to your situation.
+**Note**: This document is intended for informational purposes only and does not constitute legal or financial advice. 
+
 
