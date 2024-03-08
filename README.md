@@ -85,7 +85,7 @@ The contract owner can manually trigger token burning using the `manualBurn` fun
 The contract implements an adaptive rebalancing threshold to maintain a healthy token distribution. The threshold starts at a high value and decreases progressively based on the number of blocks since the trading start. The threshold is calculated using the following formula:
 
 ```solidity
-adaptiveRebalancingThreshold = _initialAdaptiveRebalancingThreshold - ((_initialAdaptiveRebalancingThreshold - _finalAdaptiveRebalancingThreshold) * (blocksRemaining / _adaptiveRebalancingThresholdReductionBlocks))
+adaptiveRebalancingThreshold = _initialAdaptiveRebalancingThreshold - ((_initialAdaptiveRebalancingThreshold - _finalAdaptiveRebalancingThreshold) * (blocksRemaining / _adaptiveRebalancingThresholdReductionBlocks))`
 
 When the contract balance exceeds the adaptive rebalancing threshold, the excess tokens are automatically burned.
 
