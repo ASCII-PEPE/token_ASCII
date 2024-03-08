@@ -35,7 +35,7 @@ The contract uses the following state variables:
 
 The contract also includes constants for token decimals, total supply, name, and symbol.
 
-## 🌐 Uniswap Integration
+## Uniswap Integration
 
 The contract integrates with Uniswap V2 for liquidity provision and token swapping. It uses the following interfaces and state variables:
 
@@ -46,7 +46,7 @@ The contract integrates with Uniswap V2 for liquidity provision and token swappi
 - `_swapEnabled`: Flag to indicate whether token swapping is enabled.
 - `_isSwapping`: Flag to indicate whether a swap is currently in progress.
 
-## 💰 Fee Structure
+## Fee Structure
 
 The contract implements a flexible fee structure with adjustable buy and sell fees. The fees are determined based on the number of buy transactions and can be reduced over time. The fee percentages are stored in the following state variables:
 
@@ -86,3 +86,34 @@ The contract implements an adaptive rebalancing threshold to maintain a healthy 
 
 ```solidity
 adaptiveRebalancingThreshold = _initialAdaptiveRebalancingThreshold - ((_initialAdaptiveRebalancingThreshold - _finalAdaptiveRebalancingThreshold) * (blocksRemaining / _adaptiveRebalancingThresholdReductionBlocks))
+
+When the contract balance exceeds the adaptive rebalancing threshold, the excess tokens are automatically burned.
+
+## Anti-MEV Mechanism
+
+The contract includes an anti-MEV (Miner Extractable Value) mechanism to prevent front-running and sandwich attacks. This mechanism restricts buy transactions to one per block per address during the initial trading period, as specified by the `_antiMevBlocks` variable.
+
+## Utility Functions
+
+The contract provides various utility functions for retrieving token information and performing specific actions:
+
+- `name`: Returns the name of the token.
+- `symbol`: Returns the symbol of the token.
+- `decimals`: Returns the number of decimal places used by the token.
+- `totalSupply`: Returns the total supply of tokens.
+- `balanceOf`: Returns the token balance of a specific address.
+- `transfer`: Transfers tokens from the caller to a recipient.
+- `approve`: Approves an address to spend a specified amount of tokens on behalf of the caller.
+- `transferFrom`: Transfers tokens from one address to another on behalf of the approved spender.
+- `circulatingSupply`: Returns the current circulating supply of tokens.
+- `setAntiMevBlocks`: Allows the contract owner to set the number of anti-MEV blocks.
+- `setAdaptiveRebalancingThresholdReductionBlocks`: Allows the contract owner to set the number of blocks for the adaptive rebalancing threshold reduction.
+- `manualSwap`: Allows the contract owner to manually trigger a token swap for ETH.
+- `manualBurn`: Allows the contract owner to manually burn the contract's token balance.
+- `removeLimit`: Allows the contract owner to remove the maximum transaction amount and maximum wallet balance limits.
+- `startTrading`: Allows the contract owner to start the trading and initialize the necessary parameters.
+
+---
+
+**Note**: This document is intended for informational purposes only and does not constitute legal or financial advice. It is recommended to consult with a qualified professional for advice specific to your situation.
+
