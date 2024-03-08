@@ -1,27 +1,34 @@
 # ASCII PEPE Technical Documentation
 
-This document provides a detailed technical overview of the ASCII PEPE smart contract, including its architecture, features, and implementation details. 
-The contract is written in Solidity and follows the ERC20 token standard.
+- This document provides a detailed technical overview of the ASCII PEPE smart contract, including its architecture, features, and implementation details. 
+- The contract is written in Solidity and follows the ERC20 token standard.
 
-The ASCII PEPE smart contract is a feature-rich implementation of an ERC20 token on the Ethereum blockchain. 
-The contract incorporates several advanced mechanisms and design patterns that make it stand out from typical memecoin contracts. 
+- The ASCII PEPE smart contract is a feature-rich implementation of an ERC20 token on the Ethereum blockchain. 
+- The contract incorporates several advanced mechanisms and design patterns that make it stand out from typical memecoin contracts. 
 
 ## OpenZeppelin
 
-The ASCII PEPE contract is built upon the OpenZeppelin library, which provides a solid and audited foundation for ERC20 token contracts.
-The use of the `SafeMath` library for arithmetic operations further enhances the contract's security by preventing integer overflow and underflow vulnerabilities.
+- The ASCII PEPE contract is built upon the OpenZeppelin library, which provides a solid and audited foundation for ERC20 token contracts.
+- The use of the `SafeMath` library for arithmetic operations further enhances the contract's security by preventing integer overflow and underflow vulnerabilities.
 
 ## Anti-MEV Mechanism
 
- MEV refers to the ability of miners to extract value by manipulating the ordering of transactions within a block. To mitigate this risk, the contract implements a block-based restriction during the initial trading period. The `_antiMevBlocks` variable determines the number of blocks for which the anti-MEV mechanism remains active after the trading launch. During this period, each address is limited to one buy transaction per block, effectively deterring front-running and sandwich attacks.
+- MEV refers to the ability of miners to extract value by manipulating the ordering of transactions within a block. To mitigate this risk, the contract implements a block-based restriction during the initial trading period. 
+- The `_antiMevBlocks` variable determines the number of blocks for which the anti-MEV mechanism remains active after the trading launch. 
+- During this period, each address is limited to one buy transaction per block, effectively deterring front-running and sandwich attacks.
 
 ## Adaptive Rebalancing Threshold
 
-The ASCII PEPE contract introduces an original concept called the adaptive rebalancing threshold. In contrary to the typical way that the dynamic tax function is abused by developers today, this mechanism dynamically adjusts the maximum token balance that the contract itself can hold based on the number of blocks since the trading start. The threshold starts at a high value defined by `_initialAdaptiveRebalancingThreshold` and gradually decreases towards `_finalAdaptiveRebalancingThreshold` over a specified number of blocks (`_adaptiveRebalancingThresholdReductionBlocks`). If the contract's token balance exceeds the current threshold, the excess tokens are automatically burned, maintaining a healthy token distribution and preventing excessive accumulation within the contract.
+- The ASCII PEPE contract introduces an original concept called the adaptive rebalancing threshold. In contrary to the typical way that the dynamic tax function is abused by developers today, this mechanism dynamically adjusts the maximum token balance that the contract itself can hold based on the number of blocks since the trading start. 
+- The threshold starts at a high value defined by `_initialAdaptiveRebalancingThreshold` and gradually decreases towards `_finalAdaptiveRebalancingThreshold` over a specified number of blocks (`_adaptiveRebalancingThresholdReductionBlocks`). 
+- If the contract's token balance exceeds the current threshold, the excess tokens are automatically burned, maintaining a healthy token distribution and preventing excessive accumulation within the contract.
 
 ## Token Burning Mechanism
 
-The ASCII PEPE contract incorporates a token burning mechanism to control the token supply and maintain deflationary pressure. The `_burn` function enables the contract to burn tokens from a specified address, updating the `_circulatingSupply` variable accordingly. The contract owner can manually trigger token burning through the `manualBurn` function, allowing for strategic supply adjustments. Additionally, when the contract's token balance exceeds the adaptive rebalancing threshold, the excess tokens are automatically burned, further regulating the token supply.
+- The ASCII PEPE contract incorporates a token burning mechanism to control the token supply and maintain deflationary pressure. 
+- The `_burn` function enables the contract to burn tokens from a specified address, updating the `_circulatingSupply` variable accordingly. 
+- The contract owner can manually trigger token burning through the `manualBurn` function, allowing for strategic supply adjustments. 
+- Additionally, when the contract's token balance exceeds the adaptive rebalancing threshold, the excess tokens are automatically burned, further regulating the token supply.
 
 ## Contract Architecture
 
