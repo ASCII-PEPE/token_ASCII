@@ -19,6 +19,10 @@ The use of the `SafeMath` library for arithmetic operations further enhances the
 
 The ASCII PEPE contract introduces an original concept called the adaptive rebalancing threshold. In contrary to the typical way that the dynamic tax function is abused by developers today, this mechanism dynamically adjusts the maximum token balance that the contract itself can hold based on the number of blocks since the trading start. The threshold starts at a high value defined by `_initialAdaptiveRebalancingThreshold` and gradually decreases towards `_finalAdaptiveRebalancingThreshold` over a specified number of blocks (`_adaptiveRebalancingThresholdReductionBlocks`). If the contract's token balance exceeds the current threshold, the excess tokens are automatically burned, maintaining a healthy token distribution and preventing excessive accumulation within the contract.
 
+## Token Burning Mechanism
+
+The ASCII PEPE contract incorporates a token burning mechanism to control the token supply and maintain deflationary pressure. The `_burn` function enables the contract to burn tokens from a specified address, updating the `_circulatingSupply` variable accordingly. The contract owner can manually trigger token burning through the `manualBurn` function, allowing for strategic supply adjustments. Additionally, when the contract's token balance exceeds the adaptive rebalancing threshold, the excess tokens are automatically burned, further regulating the token supply.
+
 ## Contract Architecture
 
 The ASCII PEPE smart contract inherits from the following contracts and libraries:
