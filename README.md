@@ -1,6 +1,7 @@
 # ASCII PEPE Smart Contract Technical Documentation
 
-This document provides a detailed technical overview of the ASCII PEPE smart contract, including its architecture, features, and implementation details. The contract is written in Solidity and follows the ERC20 token standard.
+This document provides a detailed technical overview of the ASCII PEPE smart contract, including its architecture, features, and implementation details. 
+The contract is written in Solidity and follows the ERC20 token standard.
 
 The ASCII PEPE smart contract is a feature-rich implementation of an ERC20 token on the Ethereum blockchain. 
 The contract incorporates several advanced mechanisms and design patterns that make it stand out from typical memecoin contracts. 
