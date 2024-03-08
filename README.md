@@ -88,11 +88,11 @@ The contract implements an adaptive rebalancing threshold to maintain a healthy 
 
 When the contract balance exceeds the adaptive rebalancing threshold, the excess tokens are automatically burned.
 
-## 🚫 Anti-MEV Mechanism
+## Anti-MEV Mechanism
 
 The contract includes an anti-MEV (Miner Extractable Value) mechanism to prevent front-running and sandwich attacks. This mechanism restricts buy transactions to one per block per address during the initial trading period, as specified by the `_antiMevBlocks` variable.
 
-## 🎯 Utility Functions
+## Utility Functions
 
 The contract provides various utility functions for retrieving token information and performing specific actions:
 
